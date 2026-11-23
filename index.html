@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cumbre — Recepción con IA para hoteles, hostales y lodges</title>
+<meta name="description" content="Recepción con IA 24/7 para hoteles, hostales, hosterías y lodges. Responde en 30 segundos, en español, inglés o el idioma del huésped.">
+<meta property="og:title" content="Cumbre — Ninguna consulta sin respuesta">
+<meta property="og:description" content="Recepción con IA 24/7 para alojamientos. Responde en 30 segundos, en el idioma del huésped, con tu información real.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cumbrehq.com/">
+<meta name="theme-color" content="#0E1418">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1418;--ink-2:#151D23;--ink-3:#0B1115;
+    --cream:#F5F1EA;--clay:#C4633F;--clay-soft:#E08B69;
+    --muted:#8A98A3;--line:rgba(245,241,234,.12);--max:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--ink);color:var(--cream);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:rgba(196,99,63,.35);color:#fff}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  section[id]{scroll-margin-top:90px}
+
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(14,20,24,.82);backdrop-filter:blur(12px);z-index:30}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+  .logo{font-weight:700;letter-spacing:-.02em;font-size:20px;text-decoration:none;flex-shrink:0}
+  .logo span{color:var(--clay)}
+  .nav-links{display:flex;gap:24px;align-items:center}
+  .nav-links a{text-decoration:none;color:var(--muted);font-size:14.5px;transition:color .2s}
+  .nav-links a:hover{color:var(--cream)}
+  .lang{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:8px;padding:3px}
+  .lang button{background:none;border:0;color:var(--muted);font:inherit;font-size:12px;font-weight:600;
+    padding:4px 8px;border-radius:5px;cursor:pointer;letter-spacing:.04em;transition:color .2s,background .2s}
+  .lang button[aria-pressed="true"]{background:rgba(245,241,234,.12);color:var(--cream)}
+  .btn{display:inline-block;padding:13px 22px;border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;
+    transition:transform .15s,background .2s,border-color .2s;border:1px solid transparent}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:focus-visible{outline:2px solid var(--clay-soft);outline-offset:3px}
+  .btn-primary{background:var(--clay);color:#fff}
+  .btn-primary:hover{background:var(--clay-soft)}
+  .btn-ghost{border-color:var(--line);color:var(--cream)}
+  .btn-ghost:hover{border-color:var(--muted)}
+
+  .hero{padding:78px 0 70px;position:relative}
+  .hero:before{content:"";position:absolute;top:-30%;left:-10%;width:60%;height:120%;
+    background:radial-gradient(closest-side,rgba(196,99,63,.15),transparent 72%);pointer-events:none}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center;position:relative}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--clay-soft);font-weight:600}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--clay);display:inline-block;animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  h1{font-size:clamp(31px,4.5vw,53px);line-height:1.04;letter-spacing:-.032em;margin:18px 0 20px;font-weight:700;max-width:17ch}
+  .lead{font-size:clamp(16px,1.65vw,18px);color:#C9D1D7;max-width:53ch;margin:0 0 28px}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .micro{margin-top:18px;font-size:13px;color:var(--muted)}
+  .langs{display:flex;gap:8px;align-items:center;margin-top:22px;flex-wrap:wrap}
+  .langs span{font-size:11.5px;letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);
+    padding:3px 9px;border-radius:999px;font-weight:500}
+
+  .chatcard{background:var(--ink-3);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    box-shadow:0 40px 90px -40px rgba(0,0,0,.9);position:relative}
+  .chathead{display:flex;align-items:center;gap:11px;padding:13px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+  .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(140deg,#2A3942,#1B242B);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--clay-soft);flex-shrink:0}
+  .chathead .who{font-size:13px;font-weight:600;line-height:1.25}
+  .chathead .st{font-size:11px;color:#5FCE8C}
+  .clock{margin-left:auto;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .chatbody{height:368px;padding:18px 16px;display:flex;flex-direction:column;gap:9px;justify-content:flex-end;overflow:hidden}
+  .bubble{max-width:84%;padding:10px 13px;border-radius:14px;font-size:13.5px;line-height:1.45;
+    opacity:0;transform:translateY(10px);transition:opacity .35s,transform .35s}
+  .bubble.show{opacity:1;transform:none}
+  .guest{align-self:flex-start;background:#1B242B;border-bottom-left-radius:4px;color:#E7EDF1}
+  .bot{align-self:flex-end;background:var(--clay);color:#fff;border-bottom-right-radius:4px}
+  .typing{align-self:flex-end;display:flex;gap:4px;padding:13px 16px;background:rgba(196,99,63,.28);border-radius:14px}
+  .typing i{width:6px;height:6px;border-radius:50%;background:var(--clay-soft);animation:blink 1.2s infinite}
+  .typing i:nth-child(2){animation-delay:.18s}
+  .typing i:nth-child(3){animation-delay:.36s}
+  @keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+  .chatfoot{border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);gap:10px}
+  .pill{background:rgba(95,206,140,.12);color:#5FCE8C;padding:3px 9px;border-radius:999px;font-weight:600;white-space:nowrap}
+
+  .proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink-2)}
+  .proof-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+  .proof-item{padding:30px 24px;border-left:1px solid var(--line)}
+  .proof-item:first-child{border-left:none;padding-left:0}
+  .proof-num{font-size:clamp(26px,3.2vw,36px);font-weight:700;letter-spacing:-.02em;line-height:1}
+  .proof-num em{font-style:normal;color:var(--clay)}
+  .proof-label{font-size:13px;color:var(--muted);margin-top:8px;max-width:32ch}
+
+  .types{border-bottom:1px solid var(--line);background:var(--ink-2)}
+  .types .wrap{display:flex;align-items:center;gap:18px;padding-top:22px;padding-bottom:22px;flex-wrap:wrap}
+  .types .lbl{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chips span{font-size:12.5px;color:#C9D1D7;border:1px solid var(--line);padding:5px 12px;border-radius:999px}
+
+  section{padding:84px 0}
+  h2{font-size:clamp(25px,3.1vw,35px);letter-spacing:-.025em;line-height:1.16;margin:0 0 16px;font-weight:700;max-width:24ch}
+  .section-lead{color:#C9D1D7;max-width:62ch;margin:0 0 42px;font-size:16.5px}
+  .tag{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--clay-soft);font-weight:600;margin-bottom:12px}
+
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:26px;transition:border-color .25s,transform .25s}
+  .card:hover{border-color:rgba(196,99,63,.4);transform:translateY(-2px)}
+  .card h3{font-size:16px;margin:0 0 8px;font-weight:600}
+  .card p{margin:0;color:#AEB9C2;font-size:14.5px}
+  .step-n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;
+    background:rgba(196,99,63,.16);color:var(--clay-soft);font-weight:700;font-size:13px;margin-bottom:16px}
+
+  .timeline{position:relative;padding-left:26px;margin-top:8px}
+  .timeline:before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:var(--line)}
+  .tl-item{position:relative;padding-bottom:26px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item:before{content:"";position:absolute;left:-26px;top:7px;width:11px;height:11px;border-radius:50%;
+    background:var(--ink);border:2px solid var(--clay)}
+  .tl-time{font-size:12px;color:var(--clay-soft);font-weight:600;letter-spacing:.05em;font-variant-numeric:tabular-nums}
+  .tl-text{font-size:14.5px;color:#C9D1D7;margin-top:4px}
+
+  .include{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start}
+  ul.check{list-style:none;padding:0;margin:0}
+  ul.check li{padding:13px 0 13px 34px;border-bottom:1px solid var(--line);position:relative;color:#D5DCE2;font-size:14.5px}
+  ul.check li:before{content:"";position:absolute;left:0;top:20px;width:16px;height:16px;border-radius:50%;background:rgba(196,99,63,.18)}
+  ul.check li:after{content:"";position:absolute;left:5px;top:24px;width:6px;height:3px;
+    border-left:2px solid var(--clay-soft);border-bottom:2px solid var(--clay-soft);transform:rotate(-45deg)}
+
+  .price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .price{background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:30px;position:relative}
+  .price.feat{border-color:rgba(196,99,63,.55)}
+  .price .name{font-size:14px;font-weight:600;color:var(--clay-soft);letter-spacing:.02em}
+  .price .amount{font-size:36px;font-weight:700;letter-spacing:-.03em;margin:12px 0 2px}
+  .price .amount small{font-size:15px;font-weight:500;color:var(--muted);letter-spacing:0}
+  .price .setup{color:var(--muted);font-size:13px;margin-bottom:20px}
+  .price ul{list-style:none;padding:0;margin:0 0 24px;font-size:14px;color:#C9D1D7}
+  .price ul li{padding:6px 0 6px 20px;position:relative}
+  .price ul li:before{content:"—";position:absolute;left:0;color:var(--clay)}
+  .price .btn{width:100%;text-align:center}
+  .badge{position:absolute;top:-11px;left:26px;background:var(--clay);color:#fff;font-size:10.5px;font-weight:700;
+    letter-spacing:.09em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+
+  details{border-bottom:1px solid var(--line);padding:18px 0}
+  details summary{cursor:pointer;font-weight:600;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  details summary::-webkit-details-marker{display:none}
+  details summary:after{content:"+";color:var(--clay);font-weight:400;font-size:22px;line-height:1}
+  details[open] summary:after{content:"–"}
+  details p{color:#AEB9C2;font-size:14.5px;margin:12px 0 0;max-width:72ch}
+
+  .cta{background:linear-gradient(180deg,rgba(196,99,63,.10),transparent);border-top:1px solid var(--line);text-align:center;padding:90px 0}
+  .cta h2{margin:0 auto 16px;max-width:26ch}
+  .cta .lead{margin:0 auto 32px;text-align:center}
+
+  footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:13px}
+  .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .foot a{color:var(--muted);text-decoration:none}
+  .foot a:hover{color:var(--cream)}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .dot,.typing i{animation:none}
+    html{scroll-behavior:auto}
+  }
+
+  @media (max-width:900px){
+    .hero-grid,.include,.grid-3,.price-grid,.proof-grid{grid-template-columns:1fr}
+    .hero-grid{gap:38px}
+    .proof-item{border-left:none;border-top:1px solid var(--line);padding-left:0}
+    .proof-item:first-child{border-top:none;padding-top:0}
+    .nav-links a:not(.btn){display:none}
+    section{padding:60px 0}
+    .hero{padding:50px 0 46px}
+    .chatbody{height:310px}
+    h1{max-width:100%}
+  }
+</style>
+</head>
+<body>
+
+<!--
+  PUBLICAR: WhatsApp ya configurado (593962887476) y textos en ES/EN via atributos data-en.
+  Cuando termines el Test del Huesped Invisible, cambia la barra de prueba por tus datos reales.
+-->
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#">cumbre<span>.</span></a>
+    <nav class="nav-links">
+      <a href="#como" data-t data-en="How it works">Cómo funciona</a>
+      <a href="#precio" data-t data-en="Pricing">Precio</a>
+      <div class="lang" role="group" aria-label="Idioma">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn-primary" href="https://wa.me/593962887476?text=Hola%2C%20quiero%20ver%20mi%20alojamiento%20respondiendo" target="_blank" rel="noopener" data-t data-en="Book a demo">Pedir demo</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span> <span data-t data-en="24/7 front desk · hotels, hostels and lodges">Recepción 24/7 · hoteles, hostales y lodges</span></span>
+        <h1 data-t data-en="They write at 11 pm, in another language. Who answers?">Escriben a las 11 de la noche, en otro idioma. ¿Quién contesta?</h1>
+        <p class="lead" data-t data-en="We install an AI front desk on your WhatsApp and website. It replies in 30 seconds, in Spanish, English or whatever language the guest uses, with your property's real information. And when it does not know something, it hands it to you.">Instalamos una recepción con IA en tu WhatsApp y en tu web. Responde en 30 segundos, en español, inglés o el idioma del huésped, con la información real de tu alojamiento. Y cuando no sabe algo, te lo pasa a ti.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://wa.me/593962887476?text=Hola%2C%20quiero%20ver%20mi%20alojamiento%20respondiendo" target="_blank" rel="noopener" data-t data-en="Show my property answering">Quiero ver mi alojamiento respondiendo</a>
+          <a class="btn btn-ghost" href="#demo" data-t data-en="Watch a 60-second demo">Ver una demo de 60 segundos</a>
+        </div>
+        <p class="micro" data-t data-en="Live in 7 days · No long contracts · Cancel with 30 days notice">Instalación en 7 días · Sin contratos eternos · Cancelas con 30 días de aviso</p>
+        <div class="langs">
+          <span>Español</span><span>English</span><span>Português</span><span>Français</span>
+        </div>
+      </div>
+
+      <div class="chatcard" aria-label="Ejemplo de conversación con la recepción automática">
+        <div class="chathead">
+          <div class="avatar">CE</div>
+          <div>
+            <div class="who">Casa Ejemplo · <span data-t data-en="Front desk">Recepción</span></div>
+            <div class="st" data-t data-en="online">en línea</div>
+          </div>
+          <div class="clock">23:47</div>
+        </div>
+        <div class="chatbody" id="chat">
+          <div class="bubble guest show">Hi! Do you have availability for 2 adults, Feb 12–15?</div>
+        </div>
+        <div class="chatfoot">
+          <span data-t data-en="Replies in 28 seconds">Responde en 28 segundos</span>
+          <span class="pill">24/7</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proof">
+    <div class="wrap proof-grid">
+      <div class="proof-item">
+        <div class="proof-num"><em>24/7</em></div>
+        <div class="proof-label" data-t data-en="including 3 am, Sundays and public holidays">incluidas las 3 de la mañana, los domingos y los feriados</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-num"><em>30</em> s</div>
+        <div class="proof-label" data-t data-en="first response time, in the language of the person writing">tiempo de primera respuesta, en el idioma de quien escribe</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-num"><em>7</em> <span data-t data-en="days">días</span></div>
+        <div class="proof-label" data-t data-en="from signature to answering live">desde la firma hasta que está respondiendo en vivo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="types">
+    <div class="wrap">
+      <span class="lbl" data-t data-en="Built for">Hecho para</span>
+      <div class="chips">
+        <span data-t data-en="Boutique hotels">Hoteles boutique</span>
+        <span data-t data-en="Hostels">Hostales</span>
+        <span data-t data-en="Country inns">Hosterías</span>
+        <span data-t data-en="Lodges">Lodges</span>
+        <span data-t data-en="Guest houses">Casas de huéspedes</span>
+        <span data-t data-en="Tour operators">Operadores turísticos</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="problema">
+    <div class="wrap">
+      <p class="tag reveal" data-t data-en="The problem">El problema</p>
+      <h2 class="reveal" data-t data-en="An unanswered message is not a lost message. It is a booking that is gone.">Una consulta sin responder no es una consulta perdida. Es una reserva que se fue.</h2>
+      <p class="section-lead reveal" data-t data-en="The guest who writes at 23:47 from Amsterdam will not wait until morning. If no one answers in minutes, they open Booking, compare, and book wherever they were answered. You paid to attract them and lost them at the last step.">El huésped que escribe a las 23:47 desde Ámsterdam no espera hasta mañana. Si no recibe respuesta en minutos, abre Booking, compara y reserva donde sí le contestaron. Tú pagaste por atraerlo y lo perdiste en el último paso.</p>
+      <div class="grid-3">
+        <div class="card reveal">
+          <h3 data-t data-en="The night shift">El turno de noche</h3>
+          <p data-t data-en="Nobody answers between 8 pm and 8 am. And that is exactly when guests from Europe write.">Nadie contesta entre las 20:00 y las 8:00. Y es justo la franja en que escriben los huéspedes de Europa.</p>
+        </div>
+        <div class="card reveal">
+          <h3 data-t data-en="The language">El idioma</h3>
+          <p data-t data-en="The message arrives in English and is answered by someone who does not speak it. The reply is late or never happens.">La consulta llega en inglés y la contesta alguien que no lo habla. La respuesta tarda o no existe.</p>
+        </div>
+        <div class="card reveal">
+          <h3 data-t data-en="The commission">La comisión</h3>
+          <p data-t data-en="Every lost enquiry ends up on Booking. And Booking charges you 15% to 25% for that same booking.">Cada consulta que se cae termina en Booking. Y Booking te cobra entre 15% y 25% por esa misma reserva.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap include">
+      <div>
+        <p class="tag reveal" data-t data-en="One guest's night">La noche de un huésped</p>
+        <h2 class="reveal" data-t data-en="Six minutes between losing a booking and winning it.">Seis minutos de diferencia entre perder una reserva y ganarla.</h2>
+        <p class="section-lead reveal" data-t data-en="This is the same enquiry with and without an automated front desk.">Así se ve la misma consulta con y sin recepción automática.</p>
+        <div class="timeline">
+          <div class="tl-item reveal"><div class="tl-time">23:47 · Ámsterdam</div><div class="tl-text" data-t data-en="The guest writes in English asking about availability and an airport transfer.">El huésped escribe en inglés preguntando disponibilidad y traslado desde el aeropuerto.</div></div>
+          <div class="tl-item reveal"><div class="tl-time">23:47 · <span data-t data-en="Your property">Tu alojamiento</span></div><div class="tl-text" data-t data-en="Without a system: the message sits unread until 8 am. With Cumbre: the reply goes out in 28 seconds with rates and a booking link.">Sin sistema: el mensaje queda en visto hasta las 8:00. Con Cumbre: la respuesta sale a los 28 segundos con tarifa y enlace de reserva.</div></div>
+          <div class="tl-item reveal"><div class="tl-time">23:53 · Booking</div><div class="tl-text" data-t data-en="No reply: they open the app and book the hotel next door. With a reply: they already have the link and are paying.">Sin respuesta, abre la app y reserva en el hotel de al lado. Con respuesta, ya tiene el enlace y está pagando.</div></div>
+          <div class="tl-item reveal"><div class="tl-time">08:00 · <span data-t data-en="Front desk">Recepción</span></div><div class="tl-text" data-t data-en="Your team finds a resolved conversation and a confirmed booking, not an unanswered message.">Tu equipo encuentra una conversación resuelta y una reserva confirmada, no un mensaje sin contestar.</div></div>
+        </div>
+      </div>
+      <div class="chatcard reveal" style="align-self:center">
+        <div class="chathead">
+          <div class="avatar">CE</div>
+          <div>
+            <div class="who">Casa Ejemplo · <span data-t data-en="Front desk">Recepción</span></div>
+            <div class="st" data-t data-en="online">en línea</div>
+          </div>
+          <div class="clock">23:53</div>
+        </div>
+        <div class="chatbody" style="justify-content:flex-start;height:330px">
+          <div class="bubble guest show">Do you offer airport pickup?</div>
+          <div class="bubble bot show">We do. Private transfer from UIO, $45 each way. Want me to add it to your booking?</div>
+          <div class="bubble guest show">Yes please</div>
+          <div class="bubble bot show">Added. Your reservation link: cumbrehq.com/r/8f3a</div>
+        </div>
+        <div class="chatfoot"><span data-t data-en="Real conversation from a Cumbre front desk">Conversación real de una recepción Cumbre</span><span class="pill">28 s</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como">
+    <div class="wrap">
+      <p class="tag reveal" data-t data-en="How it works">Cómo funciona</p>
+      <h2 class="reveal" data-t data-en="Your front desk does not change. It just stops sleeping.">Tu recepción no cambia. Solo deja de dormir.</h2>
+      <p class="section-lead reveal" data-t data-en="We do not replace your team. We cover the gap where nobody is there today: nights, weekends and messages in another language.">No reemplazamos a tu equipo. Cubrimos el hueco donde hoy no hay nadie: la noche, los fines de semana y los mensajes en otro idioma.</p>
+      <div class="grid-3">
+        <div class="card reveal">
+          <span class="step-n">1</span>
+          <h3 data-t data-en="We connect">Conectamos</h3>
+          <p data-t data-en="Your WhatsApp number and a chat on your website. Your current line keeps working as usual, with your team.">Tu número de WhatsApp y un chat en tu web. El número actual sigue funcionando como siempre, con tu equipo.</p>
+        </div>
+        <div class="card reveal">
+          <span class="step-n">2</span>
+          <h3 data-t data-en="We train">Entrenamos</h3>
+          <p data-t data-en="We load your rates, rooms, policies, tours and transfers. The AI answers only from your information and never makes things up.">Cargamos tus tarifas, habitaciones, políticas, tours y transfer. La IA responde solo con tu información, nunca inventa.</p>
+        </div>
+        <div class="card reveal">
+          <span class="step-n">3</span>
+          <h3 data-t data-en="We measure">Medimos</h3>
+          <p data-t data-en="Every month you get a report: conversations handled, response time, qualified enquiries and bookings passed on.">Cada mes recibes un informe: consultas atendidas, tiempo de respuesta, consultas calificadas y reservas derivadas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="incluye" style="background:var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <p class="tag reveal" data-t data-en="What is included">Qué incluye</p>
+      <h2 class="reveal" data-t data-en="Everything a receptionist does, minus the payroll.">Todo lo que hace un recepcionista, menos el sueldo.</h2>
+      <div class="include">
+        <ul class="check reveal">
+          <li data-t data-en="Answers in Spanish, English and any other language the guest writes in">Responde en español, inglés y cualquier otro idioma en que escriba el huésped</li>
+          <li data-t data-en="Availability, rates, policies, check-in and check-out">Disponibilidad, tarifas, políticas, check-in y check-out</li>
+          <li data-t data-en="Sends the booking link in the first message">Envía el enlace de reserva en el primer mensaje</li>
+          <li data-t data-en="Hands over to a human for complaints, large groups, payments and refunds">Traspaso a humano en quejas, grupos grandes, pagos y reembolsos</li>
+          <li data-t data-en="Alerts your team on WhatsApp when something needs attention">Aviso por WhatsApp a tu equipo cuando algo requiere atención</li>
+          <li data-t data-en="A panel with every conversation and its response time">Panel con todas las conversaciones y el tiempo de respuesta</li>
+          <li data-t data-en="A monthly report with the enquiries that would have been lost">Informe mensual con las consultas que se habrían perdido</li>
+          <li data-t data-en="Unlimited tone adjustments during the first month">Ajustes de tono ilimitados durante el primer mes</li>
+        </ul>
+        <div class="card reveal" style="align-self:start">
+          <h3 style="margin-bottom:12px" data-t data-en="What it does not do">Lo que no hace</h3>
+          <p style="margin-bottom:14px" data-t data-en="It does not charge, confirm payments, negotiate rates or handle large groups. When one of those appears, it alerts your team within seconds with a summary of the conversation.">No cobra, no confirma pagos, no negocia tarifas y no maneja grupos grandes. Cuando aparece uno de esos casos, avisa a tu equipo en segundos con el resumen de la conversación.</p>
+          <p data-t data-en="We would rather build a system that knows its limits than one that improvises.">Preferimos un sistema que reconoce sus límites a uno que improvisa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="precio">
+    <div class="wrap">
+      <p class="tag reveal" data-t data-en="Pricing">Precio</p>
+      <h2 class="reveal" data-t data-en="Less than the cost of one unsold night.">Menos de lo que cuesta una noche sin vender.</h2>
+      <p class="section-lead reveal" data-t data-en="One night at your property is worth between 120 and 250 dollars. This costs the equivalent of one night a month. If it recovers two bookings a year, it has paid for itself.">Una noche en tu alojamiento vale entre 120 y 250 dólares. Esto cuesta el equivalente a una noche al mes. Si recupera dos reservas al año, ya se pagó.</p>
+      <div class="price-grid">
+        <div class="price feat reveal">
+          <span class="badge" data-t data-en="3 spots">3 cupos</span>
+          <div class="name" data-t data-en="Pilot">Piloto</div>
+          <div class="amount">$149 <small data-t data-en="/ month">/ mes</small></div>
+          <div class="setup" data-t data-en="Setup $450 · first 3 properties">Instalación $450 · primeros 3 alojamientos</div>
+          <ul>
+            <li data-t data-en="Everything in the full plan">Todo lo del plan completo</li>
+            <li data-t data-en="15-day trial: if it does not recover 3 enquiries, you do not pay">15 días de prueba: si no recuperas 3 consultas, no pagas</li>
+            <li data-t data-en="Price locked for 12 months">Precio congelado 12 meses</li>
+            <li data-t data-en="In exchange for a testimonial and 2 referrals">A cambio de un testimonio y 2 referidos</li>
+          </ul>
+          <a class="btn btn-primary" href="https://wa.me/593962887476?text=Hola%2C%20quiero%20el%20piloto" target="_blank" rel="noopener" data-t data-en="Apply for the pilot">Aplicar al piloto</a>
+        </div>
+        <div class="price reveal">
+          <div class="name" data-t data-en="24/7 front desk">Recepción 24/7</div>
+          <div class="amount">$199 <small data-t data-en="/ month">/ mes</small></div>
+          <div class="setup" data-t data-en="Setup $900 · one time">Instalación $900 · una vez</div>
+          <ul>
+            <li data-t data-en="WhatsApp + website chat with trained AI">WhatsApp + chat web con IA entrenada</li>
+            <li data-t data-en="Spanish, English and the guest's language">Español, inglés y el idioma del huésped</li>
+            <li data-t data-en="Human handover and team alerts">Traspaso a humano y avisos a tu equipo</li>
+            <li data-t data-en="Panel and monthly report">Panel e informe mensual</li>
+            <li data-t data-en="Up to 1,000 conversations per month">Hasta 1.000 conversaciones al mes</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://wa.me/593962887476?text=Hola%2C%20quiero%20el%20plan%20Recepci%C3%B3n%2024%2F7" target="_blank" rel="noopener" data-t data-en="Talk to David">Hablar con David</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <p class="tag reveal" data-t data-en="Questions">Preguntas</p>
+      <h2 class="reveal" data-t data-en="What every owner asks.">Lo que todo dueño pregunta.</h2>
+      <details>
+        <summary data-t data-en="Will the AI make things up?">¿La IA va a responder cosas que no son?</summary>
+        <p data-t data-en="No. It works only with the information you give us: rates, rooms, policies, services. If it does not have the answer, it does not improvise: it says it will confirm and alerts your team. During the first month we review every conversation together.">No. Trabaja únicamente con la información que tú nos das: tarifas, habitaciones, políticas, servicios. Si no tiene el dato, no improvisa: dice que lo confirma y avisa a tu equipo. El primer mes revisamos juntos cada conversación y ajustamos.</p>
+      </details>
+      <details>
+        <summary data-t data-en="What happens to my current WhatsApp number?">¿Qué pasa con mi número de WhatsApp actual?</summary>
+        <p data-t data-en="We do not touch it. A dedicated number is installed and published on your website, Booking and social media; your current line stays as it is, answered by your team. Once you trust the system, we can migrate the main one if you want.">No lo tocamos. Se instala un número dedicado que se publica en tu web, Booking y redes; tu línea actual sigue igual, atendida por tu equipo. Cuando ya confíes en el sistema, migramos el principal si quieres.</p>
+      </details>
+      <details>
+        <summary data-t data-en="I already use Booking. Why do I need this?">Ya trabajo con Booking. ¿Para qué esto?</summary>
+        <p data-t data-en="Booking brings you the guest who has already decided. This handles the one who wrote to you directly and was left waiting. Every direct booking also saves you 15% to 25% in commission.">Booking te trae al huésped que ya decidió. Esto atiende al que te escribió directo y se quedó esperando. Además, cada reserva directa te ahorra entre 15% y 25% de comisión.</p>
+      </details>
+      <details>
+        <summary data-t data-en="How long does installation take?">¿Cuánto tarda la instalación?</summary>
+        <p data-t data-en="Seven days from the moment we have your information. Day 1 we define tone and content; day 4 we test with real conversations; day 6 it goes live with monitoring; day 7 it is running.">Siete días desde que tenemos tus datos. El día 1 definimos el tono y la información; el día 4 probamos con conversaciones reales; el día 6 sale en vivo con monitoreo; el día 7 queda operando.</p>
+      </details>
+      <details>
+        <summary data-t data-en="Can I cancel?">¿Puedo cancelar?</summary>
+        <p data-t data-en="Yes, with 30 days notice and no penalty after the third month. The number and the information are yours; the configuration and training are our work.">Sí, con 30 días de aviso y sin penalidad después del tercer mes. El número y la información son tuyos; la configuración y el entrenamiento son nuestro trabajo.</p>
+      </details>
+    </div>
+  </section>
+
+  <div class="cta" id="demo">
+    <div class="wrap">
+      <h2 data-t data-en="Write to your own property at 11 pm. See what happens.">Escríbele a tu propio alojamiento a las 11 de la noche. Mira qué pasa.</h2>
+      <p class="lead" data-t data-en="If it answers in under a minute, congratulations: you do not need this. If it does not, message me and I will show you what it would look like with your real information.">Si te responde en menos de un minuto, felicitaciones: no necesitas esto. Si no, escríbeme y te muestro cómo se vería con tu información real.</p>
+      <div class="actions" style="justify-content:center">
+        <a class="btn btn-primary" href="https://wa.me/593962887476?text=Hola%2C%20quiero%20ver%20mi%20alojamiento%20respondiendo" target="_blank" rel="noopener" data-t data-en="Message me on WhatsApp">Escríbeme por WhatsApp</a>
+        <a class="btn btn-ghost" href="mailto:david@cumbrehq.com">david@cumbrehq.com</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 Cumbre · Quito, <span data-t data-en="Ecuador">Ecuador</span></div>
+    <div><a href="mailto:david@cumbrehq.com">david@cumbrehq.com</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var TITLES = {
+    es: 'Cumbre — Recepción con IA para hoteles, hostales y lodges',
+    en: 'Cumbre — AI front desk for hotels, hostels and lodges'
+  };
+
+  function applyLang(l){
+    document.documentElement.lang = l;
+    document.title = TITLES[l] || TITLES.es;
+    var nodes = document.querySelectorAll('[data-t]');
+    for(var i=0;i<nodes.length;i++){
+      var el = nodes[i];
+      if(el.dataset.es === undefined) el.dataset.es = el.innerHTML;
+      var val = l === 'en' ? el.getAttribute('data-en') : el.dataset.es;
+      if(val !== null) el.innerHTML = val;
+    }
+    var btns = document.querySelectorAll('[data-lang]');
+    for(var j=0;j<btns.length;j++){
+      btns[j].setAttribute('aria-pressed', btns[j].getAttribute('data-lang') === l ? 'true' : 'false');
+    }
+    try{ localStorage.setItem('cumbre_lang', l); }catch(e){}
+  }
+
+  document.querySelectorAll('[data-lang]').forEach(function(b){
+    b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); });
+  });
+
+  var saved = null;
+  try{ saved = localStorage.getItem('cumbre_lang'); }catch(e){}
+  var auto = (navigator.language || 'es').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+  applyLang(saved || auto);
+
+  // chat demo
+  var chat = document.getElementById('chat');
+  if(chat){
+    var script = [
+      {s:'bot', t:'Hello! Yes — Deluxe room with garden view is available for those dates. $180 per night, breakfast included.'},
+      {s:'guest', t:'Do you offer airport pickup?'},
+      {s:'bot', t:'We do. Private transfer from UIO, $45 each way. Want me to add it to your booking?'},
+      {s:'guest', t:'Yes please'},
+      {s:'bot', t:'Done. Here is your reservation link → cumbrehq.com/r/8f3a'}
+    ];
+    var i = 0, timers = [];
+    function addBubble(side, text){
+      var b = document.createElement('div');
+      b.className = 'bubble ' + side;
+      b.textContent = text;
+      chat.appendChild(b);
+      requestAnimationFrame(function(){ b.classList.add('show'); });
+    }
+    function addTyping(){
+      var t = document.createElement('div');
+      t.className = 'typing';
+      t.innerHTML = '<i></i><i></i><i></i>';
+      chat.appendChild(t);
+      return t;
+    }
+    function step(){
+      if(i >= script.length){
+        timers.push(setTimeout(function(){
+          chat.innerHTML = '';
+          addBubble('guest','Hi! Do you have availability for 2 adults, Feb 12–15?');
+          i = 0;
+          timers.push(setTimeout(step, 2400));
+        }, 5200));
+        return;
+      }
+      var m = script[i++];
+      if(m.s === 'bot'){
+        var ty = addTyping();
+        timers.push(setTimeout(function(){
+          ty.remove();
+          addBubble('bot', m.t);
+          timers.push(setTimeout(step, 1500));
+        }, 1300));
+      } else {
+        addBubble('guest', m.t);
+        timers.push(setTimeout(step, 1100));
+      }
+    }
+    timers.push(setTimeout(step, 1800));
+  }
+
+  // reveal on scroll
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    for(var k=0;k<els.length;k++) els[k].classList.add('in');
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(e){ io.observe(e); });
+  }
+})();
+</script>
+
+</body>
+</html>
