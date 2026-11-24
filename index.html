@@ -179,6 +179,51 @@
     h1{max-width:100%}
   }
 </style>
+<style>
+  /* --- capa visual v2: vidrio templado y luz cálida --- */
+  body:before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(900px 520px at 12% -5%,rgba(196,99,63,.16),transparent 70%),
+      radial-gradient(760px 420px at 88% 6%,rgba(224,139,105,.09),transparent 72%);
+  }
+  header,main,footer{position:relative;z-index:1}
+  h1{max-width:none}
+
+  .chatcard{
+    background:rgba(18,25,31,.55);
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border:1px solid rgba(245,241,234,.14);
+    box-shadow:0 30px 80px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08);
+  }
+  .price{
+    background:rgba(255,255,255,.035);
+    backdrop-filter:blur(14px) saturate(130%);
+    -webkit-backdrop-filter:blur(14px) saturate(130%);
+    border:1px solid rgba(245,241,234,.14);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+  }
+  .price.feat{
+    background:linear-gradient(160deg,rgba(196,99,63,.20),rgba(255,255,255,.03));
+    border-color:rgba(196,99,63,.5);
+    box-shadow:0 26px 60px -32px rgba(196,99,63,.6),inset 0 1px 0 rgba(255,255,255,.12);
+  }
+  .card{
+    background:linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
+    border-color:rgba(245,241,234,.13);
+  }
+  .claim{border-bottom:1px solid var(--line);border-top:1px solid var(--line);
+    background:linear-gradient(90deg,rgba(196,99,63,.10),rgba(196,99,63,.01) 60%,transparent)}
+  .claim .wrap{padding-top:26px;padding-bottom:26px}
+  .claim span{display:inline-flex;align-items:center;gap:13px;font-size:clamp(18px,2.5vw,26px);
+    font-weight:600;letter-spacing:-.022em;color:#F5F1EA}
+  .claim span:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--clay);
+    box-shadow:0 0 18px rgba(196,99,63,.9);flex-shrink:0}
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+    .chatcard,.price{background:rgba(21,29,35,.94)}
+  }
+</style>
 </head>
 <body>
 
@@ -208,7 +253,7 @@
     <div class="wrap hero-grid">
       <div>
         <span class="eyebrow"><span class="dot"></span> <span data-t data-en="24/7 front desk · hotels, hostels and lodges">Recepción 24/7 · hoteles, hostales y lodges</span></span>
-        <h1 data-t data-en="They write at 11 pm, in another language. Who answers?">Escriben a las 11 de la noche, en otro idioma. ¿Quién contesta?</h1>
+        <h1 data-t data-en="They write at 9 pm, at 11, at 1 am. Who answers?">Escriben a las 9, a las 11, a la 1. ¿Quién contesta?</h1>
         <p class="lead" data-t data-en="We install an AI front desk on your WhatsApp and website. It replies in 30 seconds, in Spanish, English or whatever language the guest uses, with your property's real information. And when it does not know something, it hands it to you.">Instalamos una recepción con IA en tu WhatsApp y en tu web. Responde en 30 segundos, en español, inglés o el idioma del huésped, con la información real de tu alojamiento. Y cuando no sabe algo, te lo pasa a ti.</p>
         <div class="actions">
           <a class="btn btn-primary" href="https://wa.me/593962887476?text=Hola%2C%20quiero%20ver%20mi%20alojamiento%20respondiendo" target="_blank" rel="noopener" data-t data-en="Show my property answering">Quiero ver mi alojamiento respondiendo</a>
@@ -258,6 +303,12 @@
   </div>
   <div class="wrap" style="padding-bottom:20px;margin-top:-10px">
     <span class="proof-label" style="font-size:11.5px;opacity:.7" data-t data-en="Own pilot test, 24 Nov 2026: 8 properties in Quito, Cuenca, Baños, Mindo and Tamarindo. English message sent between 22:42 and 23:00.">Prueba piloto propia, 24 nov 2026: 8 alojamientos en Quito, Cuenca, Baños, Mindo y Tamarindo. Mensaje en inglés enviado entre las 22:42 y las 23:00.</span>
+  </div>
+
+  <div class="claim">
+    <div class="wrap">
+      <span data-t data-en="No enquiry left unanswered.">Ninguna consulta sin respuesta.</span>
+    </div>
   </div>
 
   <div class="types">
