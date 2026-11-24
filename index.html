@@ -254,10 +254,16 @@
   /* --- responsive fino: moviles y tablets --- */
   .btn{white-space:nowrap}
 
-  .logo{display:inline-flex;align-items:center;gap:9px}
-  .logo .mark{width:23px;height:23px;color:var(--clay);flex-shrink:0}
-  @media (max-width:640px){ .logo .mark{width:21px;height:21px} .logo{gap:7px} }
-  @media (max-width:380px){ .logo .mark{display:none} }
+  .logo{display:inline-flex;align-items:center;gap:9px;white-space:nowrap}
+  .logo .mark{width:28px;height:28px;color:var(--clay);flex-shrink:0}
+  @media (max-width:640px){
+    .logo{gap:8px}
+    .logo .mark{width:26px;height:26px}
+  }
+  @media (max-width:380px){
+    .logo .mark{width:24px;height:24px}
+    .logo{gap:6px}
+  }
 
   @media (min-width:781px) and (max-width:900px){
     .nav-links a:not(.btn){display:inline}
