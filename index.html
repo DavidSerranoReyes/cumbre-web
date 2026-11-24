@@ -249,6 +249,56 @@
   @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
     .chatcard,.price{background:rgba(21,29,35,.94)}
   }
+
+  /* --- responsive fino: moviles y tablets --- */
+  .btn{white-space:nowrap}
+
+  @media (min-width:781px) and (max-width:900px){
+    .nav-links a:not(.btn){display:inline}
+  }
+
+  @media (max-width:640px){
+    .wrap{padding:0 18px}
+    .nav{height:62px;gap:10px}
+    .logo{font-size:18px}
+    .nav-links{gap:10px}
+    .btn{padding:11px 16px;font-size:14px}
+    .nav-links .btn{padding:10px 14px;font-size:13px}
+    .lang{padding:2px}
+    .lang button{padding:3px 6px;font-size:11px}
+    h1{font-size:clamp(28px,8.4vw,38px);line-height:1.08}
+    .lead{font-size:15.5px}
+    .actions{gap:10px}
+    .actions .btn{width:100%;text-align:center;padding:14px 18px}
+    .micro{font-size:12.5px}
+    .langs{gap:6px}
+    .langs span{font-size:11px;padding:3px 8px}
+    .proof-item{padding:22px 0}
+    .proof-num{font-size:26px}
+    .claim span{font-size:18px}
+    .chatbody{height:300px}
+    .bubble{font-size:13px}
+    section{padding:54px 0}
+    .section-lead{font-size:15px;margin-bottom:32px}
+    .price{padding:24px}
+    .card{padding:22px}
+    .cta{padding:64px 0}
+    .wa-float{width:50px;height:50px;right:14px;bottom:14px}
+  }
+
+  @media (max-width:360px){
+    .logo{font-size:17px}
+    .nav-links .btn{padding:9px 11px;font-size:12.5px}
+    .lang button{padding:3px 5px}
+  }
+
+  @media (min-width:641px) and (max-width:1024px){
+    .wrap{padding:0 30px}
+    h1{font-size:clamp(34px,4.6vw,46px)}
+    .hero-grid{gap:38px}
+    .chatbody{height:338px}
+    .include{gap:34px}
+  }
 </style>
 </head>
 <body>
