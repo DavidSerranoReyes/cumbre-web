@@ -693,6 +693,7 @@
       btns[j].setAttribute('aria-pressed', btns[j].getAttribute('data-lang') === l ? 'true' : 'false');
     }
     try{ localStorage.setItem('cumbre_lang', l); }catch(e){}
+    document.dispatchEvent(new CustomEvent('cumbre:lang', {detail:l}));
   }
 
   document.querySelectorAll('[data-lang]').forEach(function(b){
@@ -704,17 +705,39 @@
   var auto = (navigator.language || 'es').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
   applyLang(saved || auto);
 
-  // chat demo
+  // chat demo — el huesped escribe en el idioma OPUESTO al de la web
   var chat = document.getElementById('chat');
+  var CHAT = {
+    es: {
+      first: 'Hi! Do you have availability for 2 adults, Feb 12–15?',
+      script: [
+        {s:'bot', t:'Hello! Yes — Deluxe room with garden view is available for those dates. $180 per night, breakfast included.'},
+        {s:'guest', t:'Do you offer airport pickup?'},
+        {s:'bot', t:'We do. Private transfer from UIO, $45 each way. Want me to add it to your booking?'},
+        {s:'guest', t:'Yes please'},
+        {s:'bot', t:'Done. Here is your reservation link → cumbrehq.com/r/8f3a'}
+      ]
+    },
+    en: {
+      first: '¡Hola! ¿Tienen disponibilidad para 2 adultos del 12 al 15 de febrero?',
+      script: [
+        {s:'bot', t:'¡Hola! Sí, tenemos una habitación Deluxe con vista al jardín para esas fechas. Son $180 por noche, con desayuno incluido.'},
+        {s:'guest', t:'¿Ofrecen traslado desde el aeropuerto?'},
+        {s:'bot', t:'Sí. Traslado privado desde UIO, $45 por trayecto. ¿Se lo agrego a la reserva?'},
+        {s:'guest', t:'Sí, por favor'},
+        {s:'bot', t:'Listo. Aquí está el enlace de su reserva → cumbrehq.com/r/8f3a'}
+      ]
+    }
+  };
+
   if(chat){
-    var script = [
-      {s:'bot', t:'Hello! Yes — Deluxe room with garden view is available for those dates. $180 per night, breakfast included.'},
-      {s:'guest', t:'Do you offer airport pickup?'},
-      {s:'bot', t:'We do. Private transfer from UIO, $45 each way. Want me to add it to your booking?'},
-      {s:'guest', t:'Yes please'},
-      {s:'bot', t:'Done. Here is your reservation link → cumbrehq.com/r/8f3a'}
-    ];
-    var i = 0, timers = [];
+    var cTimers = [], cIndex = 0, cScript = CHAT.es.script, cFirst = CHAT.es.first;
+
+    function cClear(){
+      cTimers.forEach(clearTimeout);
+      cTimers = [];
+      chat.innerHTML = '';
+    }
     function addBubble(side, text){
       var b = document.createElement('div');
       b.className = 'bubble ' + side;
@@ -730,29 +753,39 @@
       return t;
     }
     function step(){
-      if(i >= script.length){
-        timers.push(setTimeout(function(){
+      if(cIndex >= cScript.length){
+        cTimers.push(setTimeout(function(){
           chat.innerHTML = '';
-          addBubble('guest','Hi! Do you have availability for 2 adults, Feb 12–15?');
-          i = 0;
-          timers.push(setTimeout(step, 2400));
+          addBubble('guest', cFirst);
+          cIndex = 0;
+          cTimers.push(setTimeout(step, 2400));
         }, 5200));
         return;
       }
-      var m = script[i++];
+      var m = cScript[cIndex++];
       if(m.s === 'bot'){
         var ty = addTyping();
-        timers.push(setTimeout(function(){
-          ty.remove();
+        cTimers.push(setTimeout(function(){
+          if(ty.parentNode) ty.remove();
           addBubble('bot', m.t);
-          timers.push(setTimeout(step, 1500));
+          cTimers.push(setTimeout(step, 1500));
         }, 1300));
       } else {
         addBubble('guest', m.t);
-        timers.push(setTimeout(step, 1100));
+        cTimers.push(setTimeout(step, 1100));
       }
     }
-    timers.push(setTimeout(step, 1800));
+    function startChat(lang){
+      var pack = CHAT[lang] || CHAT.es;
+      cClear();
+      cScript = pack.script;
+      cFirst = pack.first;
+      cIndex = 0;
+      addBubble('guest', cFirst);
+      cTimers.push(setTimeout(step, 1800));
+    }
+    document.addEventListener('cumbre:lang', function(e){ startChat(e.detail); });
+    startChat(document.documentElement.lang === 'en' ? 'en' : 'es');
   }
 
   // boton flotante de WhatsApp: aparece al salir del hero
