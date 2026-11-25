@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>Informe de respuesta hotelera — Cumbre</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{--ink:#0E1418;--clay:#C4633F;--cream:#F5F1EA;--muted:#6B7883;--line:#E4E0D8}
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:#151D23;font-family:Georgia,'Times New Roman',serif;line-height:1.55}
+  .wrap{max-width:820px;margin:0 auto;padding:64px 28px}
+  header{border-bottom:3px solid var(--ink);padding-bottom:26px;margin-bottom:38px}
+  .kicker{font-family:Inter,Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);font-weight:700}
+  h1{font-size:clamp(30px,4.6vw,44px);line-height:1.1;letter-spacing:-.02em;margin:14px 0 12px;font-weight:700}
+  .sub{font-size:18px;color:#3B4750;margin:0;max-width:60ch}
+  .meta{font-family:Inter,Helvetica,Arial,sans-serif;font-size:12.5px;color:var(--muted);margin-top:18px}
+  h2{font-size:13px;font-family:Inter,Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;
+     color:var(--clay);margin:46px 0 14px;font-weight:700}
+  h3{font-size:21px;margin:26px 0 8px;letter-spacing:-.01em}
+  p{margin:0 0 14px;font-size:16.5px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:28px 0 8px}
+  .stat{border-top:3px solid var(--clay);padding-top:12px}
+  .stat b{display:block;font-family:Inter,Helvetica,Arial,sans-serif;font-size:38px;line-height:1;letter-spacing:-.03em}
+  .stat span{display:block;font-family:Inter,Helvetica,Arial,sans-serif;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .bar-row{display:grid;grid-template-columns:190px 1fr 108px;gap:12px;align-items:center;margin-bottom:7px;
+    font-family:Inter,Helvetica,Arial,sans-serif;font-size:12px}
+  .bar-lab{color:#3B4750;text-align:right}
+  .bar-track{background:#F0EDE6;height:14px;border-radius:3px;overflow:hidden}
+  .bar-fill{display:block;height:100%;background:var(--clay);border-radius:3px}
+  .bar-val{color:var(--muted);font-variant-numeric:tabular-nums}
+  .note{font-family:Inter,Helvetica,Arial,sans-serif;font-size:12px;color:var(--muted);margin-top:14px}
+  table{width:100%;border-collapse:collapse;margin-top:18px;font-family:Inter,Helvetica,Arial,sans-serif;font-size:12.5px}
+  th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+     border-bottom:2px solid var(--ink);padding:8px 6px}
+  td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  blockquote{margin:26px 0;padding:18px 22px;background:#F7F5F0;border-left:4px solid var(--clay);
+    font-size:17px;font-style:italic}
+  ul{padding-left:20px}li{margin-bottom:8px}
+  .box{background:#0E1418;color:var(--cream);padding:26px 28px;border-radius:6px;margin:34px 0}
+  .box h3{color:#fff;margin-top:0}
+  .box p{color:#C9D1D7}
+  .box .big{font-family:Inter,Helvetica,Arial,sans-serif;font-size:15px}
+  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);
+    font-family:Inter,Helvetica,Arial,sans-serif;font-size:12px;color:var(--muted)}
+  @media print{body{font-size:11pt}.wrap{padding:0}h2{page-break-after:avoid}table{page-break-inside:auto}tr{page-break-inside:avoid}}
+  @media (max-width:620px){.stats{grid-template-columns:1fr}.bar-row{grid-template-columns:1fr;gap:3px}.bar-lab{text-align:left}}
+</style></head><body><div class="wrap">
+
+<header>
+  <div class="kicker">Cumbre · Informe</div>
+  <h1>Cuánto tarda un alojamiento en contestar a un huésped</h1>
+  <p class="sub">Prueba de respuesta en 22 alojamientos de Ecuador y Costa Rica. Un mensaje real, en inglés, entre las 22:38 y las 23:00.</p>
+  <div class="meta">24–25 de noviembre de 2026 · WhatsApp · Muestra: 22 alojamientos · Autor: David Serrano, Cumbre</div>
+</header>
+
+<h2>Por qué se hizo</h2>
+<p>Un huésped internacional que escribe de noche y no recibe respuesta en minutos no espera: abre Booking y reserva en otro lado. La pregunta era simple y nadie la había medido en esta plaza: <strong>si escribo como un huésped a las once de la noche, ¿cuánto tardan en contestar?</strong></p>
+
+<h2>Método</h2>
+<ul>
+  <li>Mensaje idéntico para todos: <em>"Hi! Do you have availability for 2 adults this weekend (Fri-Sun)? What's the rate including breakfast? Thanks."</em></li>
+  <li>Enviado desde un WhatsApp personal, sin perfil de empresa, entre las 22:38 y las 23:00 hora de Ecuador.</li>
+  <li>Se midió el tiempo hasta la primera respuesta con información útil (no un saludo automático).</li>
+  <li>Alojamientos sin WhatsApp se excluyeron; el canal es parte del hallazgo.</li>
+</ul>
+
+<h2>Los números</h2>
+<div class="stats">
+  <div class="stat"><b>7</b><span>de 22 contestaron en menos de 30 minutos</span></div>
+  <div class="stat"><b>9 h 45</b><span>mediana de respuesta de los demás</span></div>
+  <div class="stat"><b>11</b><span>tenían autorespuesta que saludaba y no respondía</span></div>
+</div>
+
+<h3>Tiempo hasta la primera respuesta útil</h3>
+<div class="bar-row"><span class="bar-lab">Hotel boutique · Quito</span><span class="bar-track"><span class="bar-fill" style="width:1.2%"></span></span><span class="bar-val">2 min</span></div><div class="bar-row"><span class="bar-lab">Casa patrimonial · Cuenca</span><span class="bar-track"><span class="bar-fill" style="width:1.2%"></span></span><span class="bar-val">6 min</span></div><div class="bar-row"><span class="bar-lab">Hotel de montaña · La Fortuna</span><span class="bar-track"><span class="bar-fill" style="width:1.5068493150684932%"></span></span><span class="bar-val">11 min</span></div><div class="bar-row"><span class="bar-lab">Hotel boutique · Cuenca</span><span class="bar-track"><span class="bar-fill" style="width:1.5068493150684932%"></span></span><span class="bar-val">11 min</span></div><div class="bar-row"><span class="bar-lab">Hotel de lujo · Quito</span><span class="bar-track"><span class="bar-fill" style="width:2.4657534246575343%"></span></span><span class="bar-val">18 min</span></div><div class="bar-row"><span class="bar-lab">Hotel boutique · Cuenca</span><span class="bar-track"><span class="bar-fill" style="width:2.73972602739726%"></span></span><span class="bar-val">20 min</span></div><div class="bar-row"><span class="bar-lab">Lodge de montaña · Monteverde</span><span class="bar-track"><span class="bar-fill" style="width:3.6986301369863015%"></span></span><span class="bar-val">27 min</span></div><div class="bar-row"><span class="bar-lab">Casa patrimonial · Quito</span><span class="bar-track"><span class="bar-fill" style="width:74.65753424657534%"></span></span><span class="bar-val">9 h 05 min</span></div><div class="bar-row"><span class="bar-lab">Lodge · Mindo</span><span class="bar-track"><span class="bar-fill" style="width:80%"></span></span><span class="bar-val">9 h 44 min</span></div><div class="bar-row"><span class="bar-lab">Lodge · Mindo</span><span class="bar-track"><span class="bar-fill" style="width:80.27397260273973%"></span></span><span class="bar-val">9 h 46 min</span></div><div class="bar-row"><span class="bar-lab">Hotel con restaurante · Baños</span><span class="bar-track"><span class="bar-fill" style="width:81.36986301369863%"></span></span><span class="bar-val">9 h 54 min</span></div><div class="bar-row"><span class="bar-lab">Lodge · Mindo</span><span class="bar-track"><span class="bar-fill" style="width:83.15068493150685%"></span></span><span class="bar-val">10 h 07 min</span></div><div class="bar-row"><span class="bar-lab">Cadena regional · Quito</span><span class="bar-track"><span class="bar-fill" style="width:87.53424657534246%"></span></span><span class="bar-val">10 h 39 min</span></div><div class="bar-row"><span class="bar-lab">Hotel boutique · Tamarindo</span><span class="bar-track"><span class="bar-fill" style="width:92.05479452054794%"></span></span><span class="bar-val">11 h 12 min</span></div><div class="bar-row"><span class="bar-lab">Hotel adults only · Baños</span><span class="bar-track"><span class="bar-fill" style="width:93.42465753424658%"></span></span><span class="bar-val">11 h 22 min</span></div><div class="bar-row"><span class="bar-lab">Lodge · Osa</span><span class="bar-track"><span class="bar-fill" style="width:93.83561643835617%"></span></span><span class="bar-val">11 h 25 min</span></div><div class="bar-row"><span class="bar-lab">Hotel boutique · Puerto Viejo</span><span class="bar-track"><span class="bar-fill" style="width:96.43835616438356%"></span></span><span class="bar-val">11 h 44 min</span></div><div class="bar-row"><span class="bar-lab">Lodge · Baños</span><span class="bar-track"><span class="bar-fill" style="width:99.86301369863013%"></span></span><span class="bar-val">12 h 09 min</span></div>
+<p class="note">Los cuatro casos sin tiempo medible (dos sin respuesta, uno derivado al restaurante y uno con bot de menú) no aparecen en el gráfico.</p>
+
+<h2>Lo que encontramos</h2>
+
+<h3>1. Hay un acantilado, no una curva</h3>
+<p>Siete alojamientos contestan en menos de media hora. Los demás tardan nueve horas o más. No existe un punto intermedio: o tienes a alguien pendiente del canal, o el mensaje duerme hasta la mañana. Un huésped que escribe a las 23:00 no ve una diferencia de grado, ve dos negocios distintos.</p>
+
+<h3>2. La autorespuesta da falsa tranquilidad</h3>
+<p>La mitad de la muestra tiene un saludo automático que responde en un segundo. Ninguno de esos saludos resolvió la consulta. El gerente cree que está cubierto porque el WhatsApp "contesta"; el huésped ve un mensaje que le dice "en un momento le atendemos" y a las diez horas sigue esperando.</p>
+
+<h3>3. El problema no es solo la hora, es el enrutamiento</h3>
+<p>Dos casos terminaron en el departamento equivocado: un hotel de lujo respondió con la carta del restaurante y otro derivó la consulta a reservas gastronómicas. El canal existe, la persona existe, pero el mensaje no llega a quien decide.</p>
+
+<h3>4. El precio no explica la velocidad</h3>
+<p>El alojamiento más rápido de la muestra cobra 62 dólares la noche; otro que cobra 735 contestó en 18 minutos. Los lentos incluyen propiedades de 300 dólares. La diferencia no es presupuesto: es si hay una persona asignada al canal fuera de horario.</p>
+
+<h3>5. Casi nadie cierra</h3>
+<p>De 22, solo dos enviaron un enlace de reserva en el primer intercambio. El resto entrega tarifas y espera. La conversación se queda abierta justo en el momento en que el huésped estaba listo para pagar.</p>
+
+<h2>Lo que significa para un alojamiento</h2>
+<div class="box">
+  <h3>La cuenta, con números conservadores</h3>
+  <p class="big">30 consultas al mes · 1 de cada 3 llega fuera de horario · 25% de cierre · tarifa promedio USD 120</p>
+  <p class="big">= 2,5 reservas perdidas al mes = <strong>USD 300 al mes</strong> · <strong>USD 3.600 al año</strong></p>
+  <p class="big" style="margin-bottom:0">Una recepción automática que responda en 30 segundos cuesta menos que una noche de esos 300 dólares.</p>
+</div>
+
+<h2>Ficha completa</h2>
+<table>
+  <thead><tr><th>Tipo</th><th>Ciudad</th><th>Respuesta</th><th>¿Respondió?</th><th>Nota</th></tr></thead>
+  <tbody><tr><td>Hotel boutique</td><td>Quito</td><td class="num">2 min</td><td>Sí</td><td>Tarifa completa</td></tr><tr><td>Casa patrimonial</td><td>Cuenca</td><td class="num">6 min</td><td>Sí</td><td>Tarifa + foto</td></tr><tr><td>Hotel de montaña</td><td>La Fortuna</td><td class="num">11 min</td><td>Sí</td><td>Sin disponibilidad, con alternativa</td></tr><tr><td>Hotel boutique</td><td>Cuenca</td><td class="num">11 min</td><td>Sí</td><td>4 categorías con tarifas</td></tr><tr><td>Hotel de lujo</td><td>Quito</td><td class="num">18 min</td><td>Sí</td><td>3 tarifas completas</td></tr><tr><td>Hotel boutique</td><td>Cuenca</td><td class="num">20 min</td><td>Sí</td><td>Tarifa + desayuno</td></tr><tr><td>Lodge de montaña</td><td>Monteverde</td><td class="num">27 min</td><td>Sí</td><td>Cotización completa</td></tr><tr><td>Casa patrimonial</td><td>Quito</td><td class="num">9 h 05 min</td><td>Sí</td><td>Tarifa</td></tr><tr><td>Lodge</td><td>Mindo</td><td class="num">9 h 44 min</td><td>Sí</td><td>Tarifas + enlace de reserva</td></tr><tr><td>Lodge</td><td>Mindo</td><td class="num">9 h 46 min</td><td>Sí</td><td>Tarifa + descuento efectivo</td></tr><tr><td>Hotel con restaurante</td><td>Baños</td><td class="num">9 h 54 min</td><td>Sí</td><td>Tarifa + servicios</td></tr><tr><td>Lodge</td><td>Mindo</td><td class="num">10 h 07 min</td><td>Sí</td><td>Tarifa</td></tr><tr><td>Cadena regional</td><td>Quito</td><td class="num">10 h 39 min</td><td>Sí</td><td>Tarifa con descuento</td></tr><tr><td>Hotel boutique</td><td>Tamarindo</td><td class="num">11 h 12 min</td><td>Sí</td><td>Tarifa</td></tr><tr><td>Hotel adults only</td><td>Baños</td><td class="num">11 h 22 min</td><td>Sí</td><td>2 opciones con total</td></tr><tr><td>Lodge</td><td>Osa</td><td class="num">11 h 25 min</td><td>Sí</td><td>Sin disponibilidad</td></tr><tr><td>Hotel boutique</td><td>Puerto Viejo</td><td class="num">11 h 44 min</td><td>Sí</td><td>Solo fin de semana</td></tr><tr><td>Lodge</td><td>Baños</td><td class="num">12 h 09 min</td><td>Sí</td><td>3 paquetes</td></tr><tr><td>Hotel de lujo</td><td>Quito</td><td class="num">11 h 19 min</td><td>Derivó al restaurante: nunca respondió la consulta</td><td>undefined</td></tr><tr><td>Hotel boutique</td><td>Quito</td><td class="num">sin respuesta</td><td>Solo saludo automático. Sin respuesta en 12 h</td><td>undefined</td></tr><tr><td>Lodge de lujo</td><td>Osa</td><td class="num">sin respuesta</td><td>Sin respuesta en 12 h</td><td>undefined</td></tr><tr><td>Grupo de lodges</td><td>Osa / Tortuguero</td><td class="num">bot + mañana</td><td>Bot de menú inmediato; humano al día siguiente</td><td>undefined</td></tr></tbody>
+</table>
+
+<h2>Límites de este informe</h2>
+<ul>
+  <li>22 casos no son una muestra estadística: son una señal, medida con el mismo instrumento y en las mismas condiciones.</li>
+  <li>Una sola noche. En temporada alta los tiempos cambian.</li>
+  <li>Un solo canal. Los alojamientos sin WhatsApp no entran, y eso ya es un dato sobre su operación.</li>
+  <li>Los alojamientos se presentan por tipo y ciudad, no por nombre. El objetivo es medir una práctica, no señalar a nadie.</li>
+</ul>
+
+<footer>
+  Cumbre · recepción con IA para hoteles, hostales y lodges · cumbrehq.com · david@cumbrehq.com<br>
+  Informe elaborado en noviembre de 2026. Datos propios, verificables con las capturas de las conversaciones.
+</footer>
+
+</div></body></html>
