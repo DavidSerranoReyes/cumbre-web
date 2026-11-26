@@ -350,6 +350,25 @@
     .arc{width:460px;height:460px;left:-40%;top:-12%}
     .arc.b{display:none}
   }
+  .calc{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;
+    background:rgba(255,255,255,.04);border:1px solid rgba(245,241,234,.14);border-radius:16px;padding:32px;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .calc-controls label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    font-size:13.5px;color:#C9D1D7;margin-bottom:10px}
+  .calc-controls output{font-size:20px;font-weight:700;color:var(--cream);font-variant-numeric:tabular-nums}
+  .calc-controls input[type=range]{width:100%;accent-color:var(--clay);height:28px;margin:0 0 26px;cursor:pointer}
+  .calc-controls input[type=range]:last-of-type{margin-bottom:0}
+  .calc-controls input[type=range]:focus-visible{outline:2px solid var(--clay-soft);outline-offset:4px}
+  .calc-line{font-size:15px;color:#C9D1D7}
+  .calc-line b{font-size:32px;color:var(--clay-soft);letter-spacing:-.02em;font-weight:700}
+  .calc-money{font-size:clamp(38px,5vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1;margin:10px 0 4px}
+  .calc-sub{font-size:13px;color:var(--muted)}
+  .calc-foot{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+  .calc-foot b{color:var(--cream);font-size:15px}
+  .calc-note{font-size:12px;color:var(--muted);margin-top:16px;max-width:70ch}
+
+  @media (max-width:900px){ .calc{grid-template-columns:1fr;gap:24px;padding:24px} }
+
   @media (prefers-reduced-motion:reduce){
     .marquee-track{animation:none}
   }
@@ -619,6 +638,29 @@
     </div>
   </section>
 
+  <section id="calculadora" style="background:var(--ink-2);border-top:1px solid var(--line)">
+    <div class="wrap">
+      <p class="tag reveal" data-t data-en="Calculator">Calculadora</p>
+      <h2 class="reveal" data-t data-en="What is it costing you not to answer?">¿Cuánto te cuesta no contestar?</h2>
+      <p class="section-lead reveal" data-t data-en="Move the two sliders. The assumptions are in plain sight, so you can argue with them.">Mueve los dos controles. Los supuestos están a la vista, para que los puedas discutir.</p>
+      <div class="calc reveal">
+        <div class="calc-controls">
+          <label for="c1"><span data-t data-en="Enquiries per month">Consultas al mes</span> <output id="c1v">40</output></label>
+          <input type="range" id="c1" min="10" max="200" step="5" value="40" aria-label="Consultas al mes">
+          <label for="c2"><span data-t data-en="Average nightly rate (USD)">Tarifa promedio por noche (USD)</span> <output id="c2v">120</output></label>
+          <input type="range" id="c2" min="40" max="600" step="10" value="120" aria-label="Tarifa promedio">
+        </div>
+        <div class="calc-result">
+          <div class="calc-line"><b id="r1">2,1</b> <span data-t data-en="recoverable bookings per month">reservas recuperables al mes</span></div>
+          <div class="calc-money">$<span id="r2">504</span></div>
+          <div class="calc-sub" data-t data-en="per month in direct revenue">al mes en ingresos directos</div>
+          <div class="calc-foot"><span data-t data-en="Professional plan $199/month · estimated return">Plan Profesional $199/mes · retorno estimado</span> <b id="r3">2,5×</b></div>
+        </div>
+      </div>
+      <p class="calc-note reveal" data-t data-en="Assumptions: 35% of enquiries arrive outside opening hours, 60% of those are recovered, and 25% close. Average stay of 2 nights. Conservative estimates — check them against your own numbers.">Supuestos: 35% de las consultas llegan fuera de horario, se recupera el 60% de ellas y cierra el 25%. Estancia media de 2 noches. Son estimaciones conservadoras: compáralas con tus propios números.</p>
+    </div>
+  </section>
+
   <section id="faq">
     <div class="wrap">
       <p class="tag reveal" data-t data-en="Questions">Preguntas</p>
@@ -787,6 +829,27 @@
     document.addEventListener('cumbre:lang', function(e){ startChat(e.detail); });
     startChat(document.documentElement.lang === 'en' ? 'en' : 'es');
   }
+
+  // calculadora
+  (function(){
+    var a = document.getElementById('c1'), b = document.getElementById('c2');
+    if(!a || !b) return;
+    var o1 = document.getElementById('c1v'), o2 = document.getElementById('c2v');
+    var r1 = document.getElementById('r1'), r2 = document.getElementById('r2'), r3 = document.getElementById('r3');
+    var fmt = function(n, dec){ return n.toFixed(dec === undefined ? 0 : dec).replace('.', ','); };
+    function calc(){
+      var q = +a.value, rate = +b.value;
+      o1.textContent = q; o2.textContent = rate;
+      var bookings = q * 0.35 * 0.6 * 0.25;
+      var revenue = bookings * rate * 2;
+      r1.textContent = fmt(bookings, 1);
+      r2.textContent = fmt(revenue);
+      r3.textContent = fmt(revenue / 199, 1) + '×';
+    }
+    a.addEventListener('input', calc);
+    b.addEventListener('input', calc);
+    calc();
+  })();
 
   // boton flotante de WhatsApp: aparece al salir del hero
   var fl = document.querySelector('.wa-float');
